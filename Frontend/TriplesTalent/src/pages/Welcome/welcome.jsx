@@ -1,10 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './welcome.css';
-import logo from '../../assets/logo.png'
+import logo from '../../assets/logo-white.png';
+import Register from '../../components/auth/register/register';
 
 function Welcome() {
-  const data = fetch("http://localhost:8000/api/").then((res) => res.json()).then((data) => console.log(data)).catch((err) => err)
 
+  const data = fetch("http://localhost:8000/api/").then((res) => res.json()).then((data) => console.log(data)).catch((err) => err)
+  
+  function handleSignUP(){
+    console.log("hi")
+  }
   return (
     <div className="welcome">
       <header className="App-header">
@@ -14,8 +20,8 @@ function Welcome() {
           <li>Find work</li>
         </ul>
         <ul className="header-right">
-            <li>Log In</li>
-            <li>Sign Up</li>
+            <li><Link to = "/login" >Log In</Link></li>
+            <li><Link to = "/signup" >Sign Up</Link></li>
             <li><button>Post a Project</button></li>
           </ul>
       </header>
