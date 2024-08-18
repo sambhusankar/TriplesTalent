@@ -1,28 +1,23 @@
 import React from 'react';
 import './welcome.css';
-import '../../assets'
+import logo from '../../assets/logo.png'
 
 function Welcome() {
+  const data = fetch("http://localhost:8000/api/").then((res) => res.json()).then((data) => console.log(data)).catch((err) => err)
+
   return (
     <div className="welcome">
       <header className="App-header">
-        <div className="header-left">
-          <img src="logo.png" alt="Freelancer Logo" />
-          <nav>
-            <ul>
-              <li>Hire freelancers</li>
-              <li>Find work</li>
-              <li>Solutions</li>
-            </ul>
-          </nav>
-        </div>
-        <div className="header-right">
-          <ul>
+        <ul className="header-left">
+          <li><img src={logo} alt="Freelancer Logo" /></li>
+          <li>Hire freelancers</li>
+          <li>Find work</li>
+        </ul>
+        <ul className="header-right">
             <li>Log In</li>
             <li>Sign Up</li>
             <li><button>Post a Project</button></li>
           </ul>
-        </div>
       </header>
       <main>
         <h1>Connect with top talent for any project any where.</h1>
