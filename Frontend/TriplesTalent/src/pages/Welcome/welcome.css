@@ -56,10 +56,12 @@
   .App-header .header-right li a:hover{
     color:blue;
   }
-  .header-right li button {
+
+  .header-right li:nth-child(3) {
     color:white;
     background:#C40D6C;
     font-weight:bold;
+    padding:10px 15px;
   }
   main {
     padding: 20px;
@@ -91,21 +93,27 @@
     margin-bottom: 10px;
   }
   
-  .main .buttons {
+  main .buttons {
     display: flex;
     justify-content:space-between;
     margin-left:50px;
     width:max-content;
   }
   
-  .main .buttons button {
-    background: #007bff;
+  main .buttons a {
+    background:transparent;
     color: white;
     margin:10px;
     padding: 10px 20px;
-    border: none;
+    border: 2px solid white;;
     border-radius: 1px;
     cursor: pointer;
+    font-weight:bold;
+    text-decoration:none;
+  }
+  main .buttons a:nth-child(1){
+    background:#C40D6C;
+    border:2px solid #C40D6C;
   }
   
   footer {

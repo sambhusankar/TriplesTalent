@@ -7,8 +7,8 @@ from rest_framework import routers
 
 
 route = routers.DefaultRouter()
-route.register("", views.ClientView, basename = 'cientview')
-
+route.register(r"clients", views.ClientView, basename = 'cientview')
+route.register(r"freelancers", views.FreelancerView, basename = 'freelancerview')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('TriplesTalent_App.urls')),

@@ -1,13 +1,13 @@
 from django.db import models
 
-class User(models.Model):
-    name = models.CharField(max_length=100)
-    username = models.CharField(max_length=100, unique=True)
+class Freelancer(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100, default = '')
     password = models.CharField(max_length=100)
-    phone_number = models.CharField(max_length=10, unique=True)
+    phone_number = models.CharField(max_length=10)
     email = models.EmailField(unique=True)
     profile_picture = models.ImageField(upload_to='Assets/profile_pics/', blank=True, null=True)
-    skills = models.JSONField(default=list, blank=True) 
+    skills = models.JSONField(default=list, blank=True, null = True) 
 
 class Manager(models.Model):
     name = models.CharField(max_length=100)
@@ -16,10 +16,10 @@ class Manager(models.Model):
     profile_picture = models.ImageField(upload_to='Assets/profile_pics/', blank=True, null=True)
      
 class Client(models.Model):
-    name = models.CharField(max_length=100)
-    username = models.CharField(max_length=100, unique=True)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100, default = '')
     password = models.CharField(max_length=100)
-    phone_number = models.CharField(max_length=10, unique=True)
+    phone_number = models.CharField(max_length=10, blank = True, null = True)
     email = models.EmailField(unique=True)
     profile_picture = models.ImageField(upload_to='Assets/profile_pics/', blank=True, null=True)
     company = models.CharField(max_length=20, blank=True) 
@@ -62,7 +62,7 @@ class Task(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='tasks')
     title = models.CharField(max_length=255)
     description = models.TextField()
-    assigned_to = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='tasks')
+    assigned_to = models.ForeignKey(Freelancer, on_delete=models.SET_NULL, null=True, related_name='tasks')
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='assigned')
     deadline = models.DateField()
 
@@ -78,9 +78,9 @@ class Pricing(models.Model):
 # Approval Model
 class Approval(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='approvals')
-    freelancer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='approvals')
+    freelancer = models.ForeignKey(Freelancer, on_delete=models.CASCADE, related_name='approvals')
     approved_by_client = models.BooleanField(default=False)
     approved_by_manager = models.BooleanField(default=False)
 
     # def __str__(self):
-    #     return f"Approval for {self.project.title} - {self.freelancer.user.username}"
+    #     return f"Approval for {self.project.title} - {self.freelancer.Freelancer.username}"

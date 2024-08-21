@@ -2,16 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './welcome.css';
 import logo from '../../assets/logo-white.png';
-import Register from '../../components/auth/register/register';
+import  axios  from 'axios'
 
 function Welcome() {
-
-  const data = fetch("http://localhost:8000/api/").then((res) => res.json()).then((data) => console.log(data)).catch((err) => err)
   
-  function handleSignUP(){
-    console.log("hi")
-  }
-  return (
+  async function data(){ 
+    await axios.get("http://localhost:8000/api/clients").then((d) => console.log(d.data)).catch((err) => console.log(err))}
+    data()
+    return (
     <div className="welcome">
       <header className="App-header">
         <ul className="header-left">
@@ -22,7 +20,7 @@ function Welcome() {
         <ul className="header-right">
             <li><Link to = "/login" >Log In</Link></li>
             <li><Link to = "/signup" >Sign Up</Link></li>
-            <li><button>Post a Project</button></li>
+            <li><Link to = "/post-project" >Post a Project</Link></li>
           </ul>
       </header>
       <main>
@@ -34,8 +32,8 @@ function Welcome() {
           <li>Pay only when you're 100% happy</li>
         </ul>
         <div className="buttons">
-          <button>Hire a Freelancer</button>
-          <button>Earn Money Freelancing</button>
+          <Link to = '/post-project'>Hire a Freelancer</Link>
+          <Link to = '/signup'>Earn Money Freelancing</Link>
         </div>
       </main>
       <footer>

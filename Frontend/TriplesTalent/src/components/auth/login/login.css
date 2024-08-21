@@ -1,0 +1,63 @@
+.login{
+    width:100vw;
+    height:100vh;
+    display:flex;
+}
+.login .log-left{
+    width:35%;
+    display:flex;
+    flex-direction:column;
+    margin:auto;
+    justify-content:center;
+    align-items:center;
+}
+.log-left img{
+    width:23vw;
+    margin:30px auto;
+}
+.log-left h1{
+    margin:auto;
+    margin-bottom:10px;
+    width:max-content;
+    font-size:1.5rem;
+}
+.log-left input{
+    margin:5px;
+    padding:10px 60px;
+    border:1px solid grey;
+    outline:none;
+    
+}
+
+.log-left .showInfo{
+    border:1px solid red;
+    color:black;
+    padding:5px 10px;
+    margin:10px;
+    display:none;
+}
+
+.log-left button{
+    width:max-content;;
+    padding:10px 30px;
+    margin:auto;
+    background-color:#2770D1;
+    color:white;
+    font-size:1.3rem;
+    font-weight:bold;
+}
+.log-left p a{
+    color:blue;
+    text-decoration:none;
+    padding-left:10px;
+}
+ 
+.login .log-right{
+    width:35%;
+}
+.login .log-right img{
+    width:35vw;
+    height:100%;
+    position:fixed;
+    right:0;
+}

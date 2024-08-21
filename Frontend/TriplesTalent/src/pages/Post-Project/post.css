@@ -1,0 +1,66 @@
+.post-project{
+    display:flex;
+    width:100vw;
+}
+.post-project .post-left{
+    width:45%;
+    margin:0 auto;
+    text-align:left;
+
+}
+.post-left img{
+    width:20vw;
+}
+.post-left h1{
+    position:relative;
+    bottom:40px;
+    width:70%;
+}
+.post-left p{
+    margin-left:50px;
+    font-size:1.1em;
+}
+.post-left textarea{
+    width:100%;
+    height:200px;
+    margin-left: 50px;
+    resize:vertical;
+}
+.post-project .post-left h1 span{
+    color:#C40D6C;
+}
+.post-project .post-right{
+    width:35%;
+}
+.post-project .post-right img{
+    width:35vw;
+    height:100vh;
+    position:fixed;
+    right:0;
+    top:0;
+}
+.post-project .post-left button{
+    background:#C40D6C;
+    color:white;
+    font-weight:bold;
+    padding:10px 30px;
+    margin-top:20px;
+    margin-left:50px;
+}
+.post-left ul{
+    list-style-type:none;
+    margin-bottom:100px;
+}
+.post-left ul li{
+    font-weight:600;
+    line-height:30px;
+}
+.post-left ul li::before{
+    content: "✓";
+    color:white;
+    font-weight:bold;
+    background:#C40D6C;
+    padding:3px;
+    border-radius:50%;
+    margin-right:20px;
+}
