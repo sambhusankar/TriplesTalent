@@ -4,14 +4,14 @@ class Freelancer(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100, default = '')
     password = models.CharField(max_length=100)
-    phone_number = models.CharField(max_length=10)
+    phone_number = models.CharField(max_length=10, blank = True, null = True)
     email = models.EmailField(unique=True)
     profile_picture = models.ImageField(upload_to='Assets/profile_pics/', blank=True, null=True)
     skills = models.JSONField(default=list, blank=True, null = True) 
 
 class Manager(models.Model):
     name = models.CharField(max_length=100)
-    phone_number = models.CharField(max_length=10, unique=True)
+    phone_number = models.CharField(max_length=10, blank = True, null = True)
     email = models.EmailField(unique=True)
     profile_picture = models.ImageField(upload_to='Assets/profile_pics/', blank=True, null=True)
      
@@ -26,10 +26,10 @@ class Client(models.Model):
     companyType = models.CharField(max_length = 20, blank = True)
 
 class TechTeam(models.Model):
-    name = models.CharField(max_length=100)
-    username = models.CharField(max_length=100, unique=True)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100, default = '')
     password = models.CharField(max_length=100)
-    phone_number = models.CharField(max_length=10, unique=True)
+    phone_number = models.CharField(max_length=10, blank = True, null = True)
     email = models.EmailField(unique=True)
     profile_picture = models.ImageField(upload_to='Assets/profile_pics/', blank=True, null=True) 
 
@@ -39,9 +39,10 @@ class Project(models.Model):
     description = models.TextField()
     budget = models.DecimalField(max_digits=10, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True, null = True, blank = True)
     deadline = models.DateField()
     posted_by = models.ForeignKey(Client, on_delete=models.CASCADE, related_name='projects_posted')
+    skills_required = models.JSONField(default=list)
     status = models.CharField(max_length=50, choices=[
         ('open', 'Open'),
         ('in_progress', 'In Progress'),

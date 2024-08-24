@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom';
 import logo from '../../../assets/logo-dark.png'
 import "./register.css"
 import axios from 'axios'
+
 function Register(){
+    const users = useSelector((state) => state.login_user.value).slice(3)
+
     const [fname, setFname] = useState('')
     const [lname, setLname] = useState('')
     const [email, setEmail] = useState('')
@@ -19,7 +22,7 @@ function Register(){
         try {
             const response = await axios({
                 method: 'POST',
-                url: 'http://localhost:8000/api/clients/',
+                url: `http://localhost:8000/api/${users}/`,
                 data:  userData,
 
             });
@@ -37,7 +40,7 @@ function Register(){
         <div className = "register">
             <div className = "reg-left">
                 <img src = { logo }></img>
-                <h1>Sign Up</h1>
+                <h1>Sign Up as a {users}</h1>
                 <hr style = {{color: 'black'}}></hr>
                 <input type = "text" placeholder = "First Name" value = {fname} onChange = {(e)=> setFname(e.target.value)}></input>
                 <input type = "text" placeholder = "Last Name" value = {lname} onChange = {(e)=> setLname(e.target.value)}></input>

@@ -9,5 +9,15 @@ class ClientView(viewsets.ModelViewSet):
 class FreelancerView(viewsets.ModelViewSet):
     queryset = models.Freelancer.objects.all()
     serializer_class = serializers.FreelancerSerializer
-def Welcome(request):
-    return 'sanar'
+
+class ManagerView(viewsets.ModelViewSet):
+    queryset = models.Manager.objects.all()
+    serializer_class = serializers.ManagerSerializer
+
+class TechTeamView(viewsets.ModelViewSet):
+    queryset = models.TechTeam.objects.all()
+    serializer_class = serializers.TechTeamSerializer
+
+class ProjectView(viewsets.ModelViewSet):
+    queryset = models.Project.objects.all()
+    serializer_class = serializers.ProjectSerializer

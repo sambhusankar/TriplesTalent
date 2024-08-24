@@ -25,6 +25,9 @@
     height:200px;
     margin-left: 50px;
     resize:vertical;
+    padding-left:10px;
+    font-family:sans-serif;
+    font-size:20px;
 }
 .post-project .post-left h1 span{
     color:#C40D6C;
@@ -39,12 +42,25 @@
     right:0;
     top:0;
 }
+.post-left input{
+    margin-left:50px;
+    margin-bottom:10px;
+    height:40px;
+    width:100%;
+    color:black;
+    outline:none;
+    padding-left:10px;
+    font-size:20px;
+}
 .post-project .post-left button{
     background:#C40D6C;
     color:white;
     font-weight:bold;
     padding:10px 30px;
     margin-top:20px;
+    margin-left:50px;
+}
+.post-left h3{
     margin-left:50px;
 }
 .post-left ul{
@@ -63,4 +79,14 @@
     padding:3px;
     border-radius:50%;
     margin-right:20px;
+}
+.post-left .post-success{
+    border:2px solid white;
+    background:#C40D6C;
+    color:white;
+    padding:20px 30px;
+    position:fixed;
+    top:45vh;
+    left:25vw;
+    display:none;
 }

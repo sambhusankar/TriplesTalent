@@ -53,6 +53,33 @@
     text-decoration:none;
   }
   
+  .App-header .login-options{
+    list-style:none;
+    border:2px solid white;
+    padding:10px;
+    position:absolute;
+    top:50px;
+    right:200px;
+    display:none;
+  }
+.signup-options{
+    list-style:none;
+    border:2px solid white;
+    padding:10px;
+    position:absolute;
+    top:50px;
+    right:100px;
+    display:none;
+  }
+  .signup-options li a, .login-options li a{
+    color:white;
+    text-decoration:none;
+    padding:10px;
+  }
+  .signup-options li a:hover, .login-options li a:hover{
+    background:#C40D6C;
+    
+  }
   .App-header .header-right li a:hover{
     color:blue;
   }

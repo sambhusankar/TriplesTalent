@@ -2,18 +2,24 @@ import React, { useState , useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../../assets/logo-dark.png'
 import "./login.css"
+import {useSelector, useDispatch} from 'react-redux'
+import { getUser} from '../../../Redux/logedUserSlice'
 function Login(){
+    const users = useSelector((state) => state.login_user.value).slice(3)
+    const dispatch = useDispatch()
     const login_ref = useRef(null)
     const navigate = useNavigate()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    let users = {}
+
+
+    //handling the user Login
     async function handleLogin(){
-        users = await fetch("http://localhost:8000/api/clients/").then((res) => res.json()).then((res) => res)
-        users.forEach((user) =>{
+        const Users = await fetch(`http://localhost:8000/api/${users}/`).then((res) => res.json()).then((res) => res)
+        Users.forEach((user) =>{
             if( user.email === email && user.password === password){
-                console.log("login success")
-                navigate('/client-dashboard')
+                navigate(`/${users}-dashboard`)
+                dispatch(getUser(user))
             }else{
                 const element = login_ref.current.querySelector(".showInfo")
                 element.style.display = "block"
@@ -25,6 +31,7 @@ function Login(){
             <div className = "log-left">
                 <img src = { logo }></img>
                 <h1>Welcome Back</h1>
+                <p style = {{fontWeight: 'bold'}}>Loin as a {users}</p>
                 <hr style = {{color: 'black'}}></hr>
                 <input type = "email" placeholder = "Email" value = {email} onChange = {(e)=> setEmail(e.target.value)}></input>
                 <input type = "password" placeholder = "Password" value = {password} onChange = {(e)=> setPassword(e.target.value)}></input>
