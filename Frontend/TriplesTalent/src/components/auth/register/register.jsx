@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import logo from '../../../assets/logo-dark.png'
 import "./register.css"
 import axios from 'axios'
-
+import { useSelector } from 'react-redux'
 function Register(){
     const users = useSelector((state) => state.login_user.value).slice(3)
 

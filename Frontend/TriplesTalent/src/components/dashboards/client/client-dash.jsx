@@ -1,8 +1,8 @@
 import React from 'react'
-import  Nav  from '../../common/nav/nav'
+import  Nav  from '../../layout/header/nav/nav'
 import './client-dash.css'
 import {useSelector} from 'react-redux'
-function Dashboard(){
+function Clie_Dash(){
     const user = useSelector((data) => data.loged_user.value)
     return(
         
@@ -14,4 +14,4 @@ function Dashboard(){
         </div>
     )
 }
-export default Dashboard
+export default Clie_Dash

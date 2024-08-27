@@ -1,17 +1,18 @@
-import React from 'react'
-import  Nav  from '../../common/nav/nav'
-import './client-dash.css'
+import React , { useEffect, useState } from 'react'
+import  Nav  from '../../layout/header/nav/nav'
+import './manager-dash.css'
 import {useSelector} from 'react-redux'
-function Dashboard(){
-    const user = useSelector((data) => data.loged_user.value)
+import AllProject from '../../projects/all-project/all-project'
+function Mana_Dash(){
+    
     return(
-        
-        <div className = "client-dash"> 
+         
+        <div className = "manager-dash"> 
             <Nav />
             <div className = "main">
-                <h1>Welcome back {user.first_name} {user.last_name}</h1>
+                <AllProject />
             </div>
         </div>
     )
 }
-export default Dashboard
+export default Mana_Dash

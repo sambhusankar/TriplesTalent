@@ -1,0 +1,54 @@
+.alll-project{
+    width:100vw;
+    height:100vh;
+}
+.all-project .project{
+    background:rgb(236, 232, 232);
+    border:2px solid blue;
+    padding:20px 30px;
+    margin:10px;
+    width:70%;
+    display:grid;
+    grid-template-columns:auto auto;
+    grid-template-rows:auto auto auto;
+    box-shadow:5px 5px 5px 0.5px grey;
+}
+
+.project h2{
+    color:blue;
+    position:relative;
+    bottom:23px;
+    font-size:30px;
+}
+
+.project h3{
+    display:flex;
+    gap:10px;
+    align-items:end;
+}
+
+.project h3 p{
+    border:2px solid red;
+    padding:5px 20px;
+    border-radius:5px;
+}
+.project span{
+    font-weight:bold;
+    text-align:right;
+    height:max-content;
+    font-size:20px;
+}
+
+.project .proj-desc{
+    grid-column:1/ span 2;
+    width:100%;
+
+}
+
+.project .update-time{
+    text-align:right;
+    display:flex;
+    align-items:end;
+    justify-content:flex-end;
+    font-weight:bold;
+}

@@ -15,6 +15,7 @@ function Post(){
     const [budget, setBudget ] = useState('')
     const [skills, setSkills] = useState('')
   
+    console.log(user)
     //posting the project data to server
     async function postProject(){
         const project_data = {
@@ -26,7 +27,7 @@ function Post(){
             skills_required: skills.split(' ').map(skill => skill.trim()),  // Assuming skills are comma-separated
             posted_by: user.id
         }
-        
+        console.log(project_data)
         try{
             await axios({
                 method: 'POST',
@@ -36,6 +37,7 @@ function Post(){
             const element = post_ref.current.querySelector(".post-success")
             element.style.display = "block"
             navigate(`/`)
+            console.log('success')
         }
         catch (err){
             console.log(err)

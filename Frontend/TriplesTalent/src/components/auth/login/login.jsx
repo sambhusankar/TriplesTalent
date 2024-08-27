@@ -12,16 +12,24 @@ function Login(){
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-
     //handling the user Login
     async function handleLogin(){
-        const Users = await fetch(`http://localhost:8000/api/${users}/`).then((res) => res.json()).then((res) => res)
+        const element = login_ref.current.querySelector(".showInfo")
+        const Users = await fetch(`http://localhost:8000/api/${users}/`).then((res) => res.json()).then((res) => res) 
+        if(users == 'Manager'){
+            if(email == 'Admin' && password == 'admin'){
+                navigate(`/${users}-dashboard`)
+            }
+            else{  
+                element.style.display = "block"
+            }
+       
+        }
         Users.forEach((user) =>{
             if( user.email === email && user.password === password){
                 navigate(`/${users}-dashboard`)
                 dispatch(getUser(user))
             }else{
-                const element = login_ref.current.querySelector(".showInfo")
                 element.style.display = "block"
             }
         })
