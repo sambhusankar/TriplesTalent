@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'TriplesTalent_App',
     'rest_framework',
-    'corsheaders',
+    
 ]
 
 
@@ -91,7 +91,25 @@ DATABASES = {
 }
 
 CORS_ORIGIN_WHITELIST = ['http://localhost:5173']
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+]
+# Allow specific methods
+CORS_ALLOW_METHODS = [
+    'GET',
+    'POST',
+    'PUT',
+    'DELETE',
+]
 
+# Allow specific headers
+CORS_ALLOW_HEADERS = [
+    'content-type',
+    'authorization',
+    'x-custom-header',
+]
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 

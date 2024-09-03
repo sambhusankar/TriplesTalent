@@ -1,5 +1,5 @@
 import React, { useEffect, useState }  from 'react'
-import './all-project.css'
+import './client.css'
 function AllClients(){
     const [project, setProject] = useState(null);
     const time = new Date()
@@ -17,7 +17,7 @@ function AllClients(){
 
         fetchProject();
     }, []);
-
+    console.log(project)
     return(
         <div className = 'all-project'>
             {project ? (
@@ -26,18 +26,8 @@ function AllClients(){
                     project.map(proj => (
                         <div key={proj.id} className = 'project'>
                            
-                            <h2>{proj.title}</h2>
-                            <span>₹ {proj.budget} INR</span>
-                            <p className = 'proj-desc'>{proj.description}</p>
-                            <h3>{
-                            proj.skills_required.map((skill) => {
-                                return <p key = {skill}>{skill}</p>
-                            })
-                                }
-
-                            </h3>
-                            
-                            <p className = 'update-time' >{proj.created_at}</p>
+                            <h2>{proj.first_name}</h2>
+                            <span>{proj.company} </span>
                         </div>
                     ))} 
                 

@@ -1,0 +1,10 @@
+.freelancer{
+    box-shadow:0 0 5px 5px lightgreen;
+    width:90vw;
+    margin:10px auto;
+    background:rgba(197, 232, 250, 0.5);
+    padding:10px;
+}
+.freelancer h2{
+    color:blue;
+}

@@ -1,6 +1,10 @@
-import React, { useEffect, useState }  from 'react'
+import React, { useEffect, useState, useRef }  from 'react'
+import {useNavigate} from 'react-router-dom'
 import './all-project.css'
+
 function AllProjects(){
+    const ref = useRef(null)
+    const navigate = useNavigate()
     const [project, setProject] = useState(null);
     const now = new Date()
     const year = now.getFullYear()
@@ -44,13 +48,18 @@ function AllProjects(){
         
     }
   
+    function openProj(id){  
+            console.log(id)  
+            navigate(`/project/${id}`)
+    }
+
     return(
-        <div className = 'all-project'>
+        <div className = 'all-project' ref = {ref}>
             {project ? (
                 <div>
                     {
                     project.map(proj => (
-                        <div key={proj.id} className = 'project'>
+                        <div key={proj.id} className = 'project'onClick={() => openProj(proj.id)}>
                            
                             <h2>{proj.title}</h2>
                             <span>₹ {proj.budget} INR</span>
@@ -71,6 +80,7 @@ function AllProjects(){
             ) : (
                 <p>Loading projects...</p>
             )} 
+
         </div>
     )
 }

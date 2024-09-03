@@ -29,6 +29,7 @@ function Login(){
             if( user.email === email && user.password === password){
                 navigate(`/${users}-dashboard`)
                 dispatch(getUser(user))
+                
             }else{
                 element.style.display = "block"
             }

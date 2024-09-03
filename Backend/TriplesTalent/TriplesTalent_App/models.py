@@ -42,6 +42,7 @@ class Project(models.Model):
     updated_at = models.DateTimeField(auto_now=True, null = True, blank = True)
     deadline = models.DateField()
     posted_by = models.ForeignKey(Client, on_delete=models.CASCADE, related_name='projects_posted')
+    assigned_with = models.ForeignKey(Freelancer, on_delete=models.CASCADE, related_name='assigned_with', null =  True, blank = True)
     skills_required = models.JSONField(default=list)
     status = models.CharField(max_length=50, choices=[
         ('open', 'Open'),

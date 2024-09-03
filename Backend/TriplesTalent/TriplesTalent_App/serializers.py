@@ -22,7 +22,8 @@ class TechTeamSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ProjectSerializer(serializers.ModelSerializer):
-    posted_by = serializers.PrimaryKeyRelatedField(queryset=models.Client.objects.all())
+    posted_by = ClientSerializer()
+    assigned_with = FreelancerSerializer()
     class Meta:
         model = models.Project
         fields = '__all__'
