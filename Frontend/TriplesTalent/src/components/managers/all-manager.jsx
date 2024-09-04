@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef }  from 'react'
 import {useNavigate} from 'react-router-dom'
 import './all-manager.css'
 import axios from 'axios'
-import profile from '../../../assets/profile.jpg'
+import profile from '../../assets/profile.jpg'
 function AllManagers({proj}){
     const ref = useRef(null)
     const navigate = useNavigate()
@@ -27,7 +27,7 @@ function AllManagers({proj}){
     }, []);
 
     
-
+    console.log(managers)
 
     return(
         <div className = 'all-freelancer' ref = {ref}>

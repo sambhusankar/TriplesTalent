@@ -7,7 +7,7 @@ import axios from 'axios'
 function Post(){
     const post_ref = useRef(null)
     const navigate = useNavigate()
-    const user = useSelector((data) => data.loged_user.value)
+    const user = useSelector((data) => data.loged_user.user)
     document.title = "Post-Project"
     const [title, setTitle ] = useState('')
     const [description, setDescription ] = useState('')
@@ -24,7 +24,7 @@ function Post(){
             budget: parseFloat(budget),
             deadline: deadline,
             status: 'open',
-            skills_required: skills.split(' ').map(skill => skill.trim()),  // Assuming skills are comma-separated
+            skills_required: skills.split(' ').map(skill => skill.trim()),  // Assuming skills are space separated
             posted_by: user.id
         }
         console.log(project_data)

@@ -2,13 +2,15 @@ import React,{useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
 import './project.css'
 import Nav from '../../layout/header/nav/nav'
-import AllFreelancer from '../../clients/all-client/all-freelancer'
+import AllFreelancer from '../../clients/all-freelancer/all-freelancer'
+import {useSelector} from 'react-redux'
 function SingleProject(){
     const id = useParams()
+    const userType = useSelector((data) => data.login_user.value).slice(3)
+    
     const [project, setProject] = useState(null);
-    const navigate = useNavigate()
     const ref = useRef()
-
+ 
     useEffect(() => {
         async function fetchProject() {
             try {
@@ -23,26 +25,59 @@ function SingleProject(){
 
     }, [id]);
 
-    function handleAssign(){
-       const proj = ref.current.querySelector(".project")
-       const freelancer = ref.current.querySelector(".freelancers")
-       proj.style.display = 'none'
-       freelancer.style.display = 'block'
+    async function handleEdit(){
+       console.log('edit')
     }
-
+    async function handleDelete(id){
+   
+        try {
+            const response = await fetch(`http://localhost:8000/api/Project/${id}/`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+        } catch (error) {
+            console.error('Error fetching project:', error);
+        }
+  
+    }
+    function handleAssign(){
+        const proj = ref.current.querySelector(".project")
+        const freelancer = ref.current.querySelector(".freelancers")
+        proj.style.display = 'none'
+        freelancer.style.display = 'block'
+     }
     return(
         <div className = "si-proj" ref = {ref}>
            
             {
                 project ? (
-                    <div className = 'project'>
-                        <div>
-                        <h1>{project.posted_by.first_name}</h1>
-                        <h1>{project.title}</h1>
-                        <p>{project.description}</p>
-                        <p>{project.deadline}</p>
+                    <div>
+                        <div className = 'project'>
+                        
+                        <input type = 'text' value = {project.title} className = 'title'/>
+                        <p>{project.updated_at} </p>
+                        <input type = 'text' value = {project.description} />
+                        <input type = 'text' value = {project.deadline} />
+                        <h3>{
+                            project.skills_required.map((skill) => {
+                                return <p key = {skill}>{skill}</p>
+                            })
+                                }
+
+                            </h3>
                         </div>
-                        <button onClick = {handleAssign}>Assign this project</button>
+                        {userType === 'Client' && <>
+                            <button onClick = {handleEdit}>Edit Project</button>
+                            <button onClick = { () => handleDelete(project.id)}>Delete Project</button>
+                        </>
+                        }
+                        {userType === 'Manager' && <>
+                            <button onClick = { () => handleAssign(project.id)}>Assign Project With</button>
+                        </>
+                        }
+                        
                     </div>
                 ) : <p>loading</p>
             }

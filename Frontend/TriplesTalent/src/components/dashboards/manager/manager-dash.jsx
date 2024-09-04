@@ -3,7 +3,7 @@ import Nav from '../../layout/header/nav/nav' // Adjust the import based on your
 import './manager-dash.css'
 import AllProject from '../../projects/all-project/all-project'
 import TrackProject from '../../projects/track-project/track-project'
-import AllFreelancer from '../../clients/all-client/all-freelancer'
+import AllFreelancer from '../../clients/all-freelancer/all-freelancer'
 function ManagerDashboard() {
     // State to track which section is active
     const [activeSection, setActiveSection] = useState('Projects');

@@ -6,7 +6,7 @@ import profile from '../../../assets/profile.jpg'
 function AllFreelancers({proj}){
     const ref = useRef(null)
     const navigate = useNavigate()
-    const [freelancer, setFreelancer] = useState(null);
+    const [freelancer, setFreelancer] = useState(null); 
     const now = new Date()
     const year = now.getFullYear()
     const month = now.getMonth()

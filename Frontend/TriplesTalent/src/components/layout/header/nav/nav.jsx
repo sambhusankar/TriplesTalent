@@ -11,7 +11,7 @@ function Nav({ managerProp, clientProp, freelancerProp, techteamProp }) {
     const ref = useRef(null);
     const userType = useSelector((data) => data.login_user.value).slice(3);
     const user = useSelector((data) => data.loged_user.user);
-    console.log(clientProp)
+    
     function openMsg(){
         const element = ref.current.querySelector('.msg-bx')
         element.style.display = 'block'
@@ -36,7 +36,6 @@ function Nav({ managerProp, clientProp, freelancerProp, techteamProp }) {
                 </>}
                 {userType === 'Client' && <>
                     <li><button onClick={clientProp.showProjects}>Projects</button></li>
-                    <li><button onClick={clientProp.showManagers}>Managers</button></li>
                     <li><button onClick={clientProp.showTrackProgress}>Track Progress</button></li>
                     <li><button onClick={clientProp.showPostProject}>Post Project</button></li>
                 </>}
