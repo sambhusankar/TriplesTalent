@@ -22,8 +22,13 @@ class TechTeamSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ProjectSerializer(serializers.ModelSerializer):
-    posted_by = ClientSerializer()
-    assigned_with = FreelancerSerializer()
+    # posted_by = ClientSerializer()  # Keep nested read-only for GET requests
+    posted_by = serializers.PrimaryKeyRelatedField(queryset=models.Client.objects.all())
+    assigned_with = serializers.PrimaryKeyRelatedField(
+        queryset=models.Freelancer.objects.all(),
+        many=True,
+        required=False
+    )
     class Meta:
         model = models.Project
         fields = '__all__'

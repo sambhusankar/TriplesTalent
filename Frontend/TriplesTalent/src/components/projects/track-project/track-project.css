@@ -1,0 +1,23 @@
+.tracks{
+    margin:10px auto;
+    background:skyblue;
+    padding:10px;
+    display:grid;
+    grid-template-columns:auto auto;
+    width:80vw;
+
+}
+.tracks h2{
+    color:blue;
+    font-weight:bold;
+    font-size:40px;
+}
+
+.assigns{
+    color:darkblue;
+    
+}
+
+.tracks button{
+    width:max-content;
+}

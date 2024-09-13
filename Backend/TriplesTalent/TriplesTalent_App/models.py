@@ -32,6 +32,7 @@ class TechTeam(models.Model):
     phone_number = models.CharField(max_length=10, blank = True, null = True)
     email = models.EmailField(unique=True)
     profile_picture = models.ImageField(upload_to='Assets/profile_pics/', blank=True, null=True) 
+    assigned_work = models.JSONField(default = list, blank = True, null = True)
 
 
 class Project(models.Model):
@@ -40,16 +41,20 @@ class Project(models.Model):
     budget = models.DecimalField(max_digits=10, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True, null = True, blank = True)
-    deadline = models.DateField()
+    deadline = models.TextField()
     posted_by = models.ForeignKey(Client, on_delete=models.CASCADE, related_name='projects_posted')
-    assigned_with = models.ForeignKey(Freelancer, on_delete=models.CASCADE, related_name='assigned_with', null =  True, blank = True)
-    skills_required = models.JSONField(default=list)
+    assigned_with = models.ManyToManyField(Freelancer, related_name='assigned_with', null =  True, blank = True)
+    skills_required = models.JSONField(default=list, null = True)
     status = models.CharField(max_length=50, choices=[
-        ('open', 'Open'),
-        ('in_progress', 'In Progress'),
+         ('open', 'Open'),
+         ('assigned', 'Assigned'),
+        ('accepted', 'Accepted'),
+        ('rejected', 'Rejected'),
         ('completed', 'Completed'),
-        ('closed', 'Closed')
-    ])
+         ('in_progress', 'In Progress'),
+         ('completed', 'Completed'),
+         ('closed', 'Closed')
+     ])
 
     def __str__(self):
         return self.title

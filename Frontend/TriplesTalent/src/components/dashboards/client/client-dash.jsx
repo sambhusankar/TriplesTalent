@@ -4,6 +4,7 @@ import './client-dash.css'
 import {useSelector} from 'react-redux'
 import Post from '../../../pages/Post-Project/post'
 import MyProject from '../../projects/my-projects/my-projects'
+import TrackProject from '../../projects/track-project/track-project'
 
 function Clie_Dash(){
     const user = useSelector((data) => data.loged_user.value)
@@ -29,7 +30,7 @@ function Clie_Dash(){
             <Nav clientProp = {client_props} />
             <div className="dashboard-content">
                 {activeSection === 'Projects' && <div><MyProject /></div>}
-                {activeSection === 'Track Progress' && <div>Track Progress Content</div>}
+                {activeSection === 'Track Progress' && <div>< TrackProject /></div>}
                 {activeSection === 'Post Project' && <div><Post /></div>}
             </div>
         </div>

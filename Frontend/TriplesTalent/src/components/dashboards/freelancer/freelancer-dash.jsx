@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import Nav from '../../layout/header/nav/nav';
 import './freelancer-dash.css';
 import { useSelector } from 'react-redux';
-import AllProject from '../../projects/all-project/all-project'
+import AssignedProjects from '../../projects/assigned-projects/assigned-projects'
+import TrackProject from '../../projects/track-project/track-project'
 function Free_Dash() {
   const user = useSelector((data) => data.loged_user.value);
   // State to track which section is active
@@ -19,8 +20,8 @@ function Free_Dash() {
     <div className="client-dash">
       <Nav freelancerProp = {freelancer_props}/>
             <div className="dashboard-content">
-                {activeSection === 'Projects' && <div><AllProject /></div>}
-                {activeSection === 'Track Progress' && <div>Track Progress Content</div>}
+                {activeSection === 'Projects' && <div><AssignedProjects /></div>}
+                {activeSection === 'Track Progress' && <div>< TrackProject /></div>}
             
             </div>
     </div>

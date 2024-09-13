@@ -10,7 +10,7 @@ function AllProjects(){
     const year = now.getFullYear()
     const month = now.getMonth()
     const day = now.getDate()
-    
+
     const minute = now.getMinutes()
     let updated;
     // Fetch data when the component mounts
@@ -27,7 +27,7 @@ function AllProjects(){
 
         fetchProject();
     }, []);
-    
+
     const time_ago = (project) => {
         const dt = new Date(project.updated_at)
         if(year - dt.getFullYear() >= 1){

@@ -7,7 +7,7 @@ import {useSelector} from 'react-redux'
 function SingleProject(){
     const id = useParams()
     const userType = useSelector((data) => data.login_user.value).slice(3)
-    
+    const navigate = useNavigate()
     const [project, setProject] = useState(null);
     const ref = useRef()
  
@@ -37,17 +37,44 @@ function SingleProject(){
                     'Content-Type': 'application/json',
                 },
             });
+            navigate('/Client-dashboard')
         } catch (error) {
             console.error('Error fetching project:', error);
         }
   
     }
+
     function handleAssign(){
         const proj = ref.current.querySelector(".project")
         const freelancer = ref.current.querySelector(".freelancers")
         proj.style.display = 'none'
         freelancer.style.display = 'block'
      }
+
+    async function handleAccept(){
+        try {
+            const response = await fetch(`http://localhost:8000/api/Project/${id.id}/`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                        'status': 'assigned'
+                })
+            });
+    
+            if (response.ok) {
+                // Navigate to the client dashboard only if the request was successful
+                console.log(response);
+            } else {
+                const errorData = await response.json();
+                console.error('Failed to assign project:', response.statusText, errorData);
+            }
+        } catch (error) {
+            console.error('Error assigning project:', error);
+        }
+    }
+
     return(
         <div className = "si-proj" ref = {ref}>
            
@@ -75,6 +102,11 @@ function SingleProject(){
                         }
                         {userType === 'Manager' && <>
                             <button onClick = { () => handleAssign(project.id)}>Assign Project With</button>
+                        </>
+                        }
+                        {
+                        userType === 'Freelancer' && <>
+                            <button onClick = { () => handleAccept(project.id)}>Accept Project</button>
                         </>
                         }
                         

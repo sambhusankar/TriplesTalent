@@ -1,0 +1,9 @@
+.task{
+    border:2px solid black;
+    background:#f5bcb8;
+    margin:20px;
+    display:flex;
+    justify-content:space-around;
+    color:darkgreen;
+    font-weight:bold;
+}

@@ -1,16 +1,16 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './my-projects.css';
+import './assigned-projects.css';
 import { useSelector } from 'react-redux';
 
-function MyProjects() {
+function AssignedProjects() {
     const owner = useSelector((data) => data.loged_user.user);
     const ref = useRef(null);
     const navigate = useNavigate();
     const [projects, setProjects] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
+    
     // Fetch data when the component mounts
     useEffect(() => {
         async function fetchProjects() {
@@ -20,8 +20,6 @@ function MyProjects() {
                     throw new Error('Network response was not ok');
                 }
                 const data = await response.json();
-                console.log(data)
-                const filteredProjects = data.filter((d) => d.posted_by.id === owner.id);
                 setProjects(data);
             } catch (error) {
                 setError(error.message);
@@ -31,7 +29,7 @@ function MyProjects() {
         }
 
         fetchProjects();
-    }, [owner.id]);
+    }, []);
 
     // Calculate time ago
     const time_ago = (project) => {
@@ -55,20 +53,24 @@ function MyProjects() {
 
         return 'Just Now';
     };
-    console.log(owner, projects)
+
     // Open project details
     function openProj(id) {
         navigate(`/project/${id}`);
     }
+
+    // Get projects assigned to the current user
+    const assignedProjects = projects.filter(
+        proj => proj.assigned_with.includes(owner.id) && proj.status === 'open'
+    );
 
     if (loading) return <p>Loading projects...</p>;
     if (error) return <p>Error fetching projects: {error}</p>;
 
     return (
         <div className='all-project' ref={ref}>
-            {projects.length > 0 ? (
-                projects.map((proj) => (
-                    proj.posted_by == owner.id &&
+            {assignedProjects.length > 0 ? (
+                assignedProjects.map((proj) => (
                     <div key={proj.id} className='project' onClick={() => openProj(proj.id)}>
                         <h2>{proj.title}</h2>
                         <span>₹ {proj.budget} INR</span>
@@ -82,10 +84,10 @@ function MyProjects() {
                     </div>
                 ))
             ) : (
-                <p>No projects you have posted yet.</p>
+                <p>Not assigned to any project</p>
             )}
         </div>
     );
 }
 
-export default MyProjects;
+export default AssignedProjects;

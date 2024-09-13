@@ -2,9 +2,13 @@ import React, {useState} from 'react'
 import  Nav  from '../../layout/header/nav/nav'
 import './techteam-dash.css'
 import {useSelector} from 'react-redux'
-import AllProject from '../../projects/all-project/all-project'
+import Works from './works'
+import AllFreelancers from '../../clients/all-freelancer/all-freelancer'
+
 function Tech_Dash(){
   const user = useSelector((data) => data.loged_user.value)
+  const work = useSelector((data) => data.techTeamWork.value)
+  console.log(work)
   // State to track which section is active
   const [activeSection, setActiveSection] = useState('Projects');
 
@@ -18,12 +22,12 @@ function Tech_Dash(){
       'showFreelancers': showFreelancers,
   }
     return(
-        
+         
         <div className = "client-dash"> 
             <Nav techteamProp = {techteam_props}/>
             <div className="dashboard-content">
-                {activeSection === 'Projects' && <div><AllProject /></div>}
-                {activeSection === 'Freelancers' && <div>freelancers</div>}
+                {activeSection === 'Projects' && <div><Works /></div>}
+                {activeSection === 'Freelancers' && <div><AllFreelancers /></div>}
                 {activeSection === 'Track Progress' && <div>Track Progress Content</div>}
             
             </div>

@@ -3,10 +3,14 @@ import {useNavigate} from 'react-router-dom'
 import './all-freelancer.css'
 import axios from 'axios'
 import profile from '../../../assets/profile.jpg'
+import {useDispatch} from 'react-redux'
+import {getTechteamWork} from '../../../Redux/techTeamslice'
 function AllFreelancers({proj}){
     const ref = useRef(null)
+    const dispatch = useDispatch()
     const navigate = useNavigate()
     const [freelancer, setFreelancer] = useState(null); 
+    const [oldJob, setOldJob] = useState([])
     const now = new Date()
     const year = now.getFullYear()
     const month = now.getMonth()
@@ -29,35 +33,36 @@ function AllFreelancers({proj}){
         
     }, []);
    
-    async function assign(freelancer) {
-        
-        
+    async function assignWork(worker) {
+        const olds = await fetch('http://localhost:8000/api/TechTeam/1/').then((res) => res.json()).then((res) => res )
+        let assigned_work = olds.assigned_work ? olds.assigned_work : []
         try {
-            const response = await fetch(`http://localhost/api/Project/${proj.id}`, {
-                method: 'PUT',
-                
+            const response = await fetch(`http://localhost:8000/api/TechTeam/1/`, {
+                method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    assigned_with: freelancer
-                }),
+                    'assigned_work': [...assigned_work, {
+                        'project': proj,  // Ensure proj.id is defined in your component scope
+                        'freelancer': worker
+                }]
+                })
             });
     
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+            if (response.ok) {
+                // Navigate to the client dashboard only if the request was successful
+                console.log(response)
+                navigate('/Manager-dashboard');
+            } else {
+                const errorData = await response.json();
+                console.error('Failed to assign project:', response.statusText, errorData);
             }
-    
-            const data = await response.json();
-            console.log('Project assigned successfully:', data);
-    
         } catch (error) {
-            console.error('There was a problem with the fetch operation:', error);
+            console.error('Error assigning project:', error);
         }
     }
     
-
-
     return(
         <div className = 'all-freelancer' ref = {ref}>
             <h3>Assign the project with someone</h3>
@@ -65,7 +70,7 @@ function AllFreelancers({proj}){
                 <div>
                     {
                     freelancer.map(worker => (
-                        <div key={worker.id} className = 'freelancer' onClick = {() => assign(worker)}>
+                        <div key={worker.id} className = 'freelancer' onClick = {() => assignWork(worker)}>
                             <img src = {worker.profile_picture} alt = 'profile' onError = {(e) => e.target.src = profile}></img>
                             <h2>{worker.first_name + worker.last_name}</h2>
                             <p>{worker.email}</p>

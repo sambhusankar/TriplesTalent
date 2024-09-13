@@ -56,7 +56,7 @@
 }
 
 .msg-bx{
-    height:90vh;
+    height:70vh;
     width:500px;
     border:2px solid black;
     position:absolute;
@@ -67,7 +67,7 @@
     padding:10px;
 }
 .msg-bx .cls-msg-btn{
-    background:blue;
+    background:#C40D6C;
     color:white;
     padding:10px;
     position:absolute;
@@ -84,11 +84,33 @@
     justify-content:space-around;
     margin:10px;
 }
+.msg-bx .search{
+    width:70%;
+    height:30px;
+    margin-top:20px;
+}
 .sending input{
     width:70%;
+    height:50px;
 }
 .sending button{
     background:blue;
     color:white;
     padding:10px;
+}
+
+.profile-view{
+    height:100px;
+    width:200px;
+    background:lightpink;
+    color:blue;
+    display:none;
+    position:fixed;
+    right:20px;
+    top:60px;
+    padding:20px;
+    text-align:center;
+}
+.profile-view button{
+    margin:5px;
 }
